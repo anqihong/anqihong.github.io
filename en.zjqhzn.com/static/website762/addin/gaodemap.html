@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf-8"utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <title>map</title>
+  <link rel="stylesheet" href="../../../../a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" tppabs="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+  <style>
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body  >
+  <div id="container"></div>
+ 
+  <script src="../../../../cache.amap.com/lbs/static/es5.min.js" tppabs="https://cache.amap.com/lbs/static/es5.min.js"></script>
+  <script src="../../../../webapi.amap.com/maps-v=1.4.10&key=efb31d2edffd03796e561807df7f3e1a" tppabs="https://webapi.amap.com/maps?v=1.4.10&key=efb31d2edffd03796e561807df7f3e1a"></script>
+  <script>
+ function getParam(name) {
+            return location.href.match(new RegExp('[?#&]' + name + '=([^?#&]+)', 'i')) ? RegExp.$1 : '';
+        }
+        var titleParam = getParam('title');
+        var contentParam = getParam('content');
+        var centerParam = getParam('center');
+        var zoomParam = getParam('zoom');
+if(zoomParam==null || zoomParam=="")zoomParam=13;
+        var widthParam = getParam('width');
+        var heightParam = getParam('height');
+        var markersParam = getParam('markers');
+        var markerStylesParam = getParam('markerStyles');
+      var langParam = getParam('lang');
+console.log(langParam);
+      if(langParam==null || langParam=="") langParam="en";
+      
+      var centerArr = centerParam.split(',');
+      
+    //初始化地图
+    var map = new AMap.Map('container', {
+      resizeEnable: true,
+      zoom:zoomParam,
+      center: [centerArr[0],centerArr[1]],
+      lang: langParam //可选值：en，zh_en, zh_cn
+    });
+
+ 	var icon = new AMap.Icon({
+    					image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_bs.png',
+    					size: new AMap.Size(24, 30)
+    				});
+
+   marker = new AMap.Marker({
+            icon: icon,
+            position: [centerArr[0],centerArr[1]],
+            offset: new AMap.Pixel(-13, -30),
+            zIndex:101
+
+        });
+        marker.setMap(map);
+</script>
+</body>
+
+</html>
